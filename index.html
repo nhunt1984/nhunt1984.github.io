@@ -22,16 +22,14 @@
       <div class="brand-mark">Nathan Hunt</div>
       <nav class="site-nav" aria-label="Main navigation">
         <div class="nav-item has-dropdown">
-          <a href="index.html#cubesat" class="nav-link">UMass CubeSat</a>
-          <div class="dropdown" role="menu" aria-label="CubeSat shortcuts">
+          <a href="index.html" class="nav-link">Experience</a>
+          <div class="dropdown" role="menu" aria-label="Experience shortcuts">
+            <a href="index.html#cubesat" class="dropdown-heading">UMass CubeSat</a>
             <a href="index.html#cubesat_work_pcu" class="dropdown-link">Power Control Unit</a>
             <a href="index.html#cubesat_work_pdu" class="dropdown-link">Power Delivery Unit</a>
             <a href="index.html#cubesat_work_2" class="dropdown-link">Radiation Paper</a>
-          </div>
-        </div>
-        <div class="nav-item has-dropdown">
-          <a href="index.html#projects" class="nav-link">Projects</a>
-          <div class="dropdown" role="menu" aria-label="Project shortcuts">
+            <a href="index.html#projects" class="dropdown-heading">Projects</a>
+            <a href="index.html#plantbuddy" class="dropdown-link">Plant-Buddy</a>
             <a href="index.html#project_1" class="dropdown-link">BNO055 Drivers</a>
             <a href="index.html#project_2" class="dropdown-link">Terminal-Based Text Editor</a>
           </div>
@@ -154,6 +152,101 @@
       <div class="section-header">
         <h2>Projects</h2>
         <p class="lead">A collection of projects I've built to sharpen my skills.</p>
+      </div>
+
+      <div class="subsection-header" id="plantbuddy">
+        <h3 class="subsection-heading">Plant-Buddy</h3>
+        <p class="lead">A BLE soil-sensor probe and Raspberry Pi hub that keeps houseplants alive. Built end to end as
+          the sole developer: PCB, firmware, hub software, and security.</p>
+      </div>
+
+      <article class="project-card" id="plantbuddy_probe">
+        <div class="card-meta">
+          <span>PCB Design</span>
+          <span>KiCad / ESP32-C3</span>
+        </div>
+        <div class="project-body">
+          <figure class="project-media">
+            <img class="expandable" src="images/PlantBuddy_Images/BumbleBee_Board_Render.png"
+              alt="3D render of the BumbleBee V1 sensor probe board, a stake-shaped PCB with an ESP32-C3 module at the head"
+              loading="lazy" decoding="async" />
+            <figcaption>BumbleBee V1 probe, rendered from the KiCad design.</figcaption>
+          </figure>
+          <div>
+            <h3>BumbleBee Sensor Probe</h3>
+            <p>Designed a 4-layer, 30 × 110 mm ESP32-C3 sensor probe in KiCad with 48 SMD parts: FDC1004 capacitive
+              moisture sensing, SHT40 temperature and humidity, VEML7700 light, an NTC for soil temperature, EC
+              electrodes, and a BQ25302 LiPo charger. DRC, ERC, and schematic-parity clean, with the BOM sourced for
+              JLCPCB assembly. Five boards were fabricated and brought up.</p>
+            <ul class="capability-list" aria-label="Key capabilities">
+              <li>Five sensors, USB-C charging, and a nanopower LDO on a stake-shaped board</li>
+              <li>Bring-up caught a soldermask omission over the EC electrodes and three broken nets that only a
+                schematic-parity DRC reveals; both checks are now in the pre-order checklist</li>
+              <li>Fabricated and assembled by JLCPCB from a generated BOM and placement file</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" id="plantbuddy_firmware">
+        <div class="card-meta">
+          <span>Embedded Firmware</span>
+          <span>ESP-IDF / C</span>
+        </div>
+        <div class="project-body">
+          <figure class="project-media">
+            <img class="expandable" src="images/PlantBuddy_Images/BumbleBee_Sensor_Head.png"
+              alt="Close-up render of the probe sensor head showing the ESP32-C3 module, USB-C port, and I2C sensors"
+              loading="lazy" decoding="async" />
+            <figcaption>The sensor head: ESP32-C3 module, USB-C charging, and the I²C sensor cluster.</figcaption>
+          </figure>
+          <div>
+            <h3>Probe Firmware</h3>
+            <p>Wrote the ESP-IDF C firmware that runs the probe: I²C sensor drivers, a packed NimBLE advertisement
+              payload, and a deep-sleep duty cycle measured at ~5.4 µA against an 11.6 µA budget. The probe wakes on a
+              timer, powers its sensor rail, reads, broadcasts, and sleeps. It does no interpretation of its own; all
+              calibration and unit conversion happen on the hub.</p>
+            <ul class="capability-list" aria-label="Key capabilities">
+              <li>I²C drivers for the FDC1004, SHT40, and VEML7700</li>
+              <li>~5.4 µA deep-sleep current against an 11.6 µA budget</li>
+              <li>Host-side unit tests on golden vectors shared with the hub</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" id="plantbuddy_hive">
+        <div class="card-meta">
+          <span>Python / FastAPI</span>
+          <span>Raspberry Pi CM5</span>
+        </div>
+        <div class="project-body">
+          <figure class="project-media">
+            <img class="expandable" src="images/PlantBuddy_Images/Hive_Dashboard.jpg"
+              alt="Hive dashboard showing three plant cards with moisture, air temperature, humidity, and battery readings"
+              loading="lazy" decoding="async" />
+            <figcaption>The Hive dashboard, running against simulated probes.</figcaption>
+          </figure>
+          <div>
+            <h3>Hive Hub &amp; Dashboard</h3>
+            <p>Built the Hive hub in Python on a Raspberry Pi CM5: a BLE collector into SQLite, a calibration
+              pipeline (VPD, lux to PPFD to DLI, NTC Beta), a FastAPI API, and a PWA dashboard with Web Push watering
+              and feeding alerts. Deployed as systemd services with a self-verifying update and rollback script, and
+              backed by a written threat model, hardening plan, and offboarding runbook.</p>
+            <ul class="capability-list" aria-label="Key capabilities">
+              <li>Daily rollups and a health-tracker chart over 24 hours, 30 days, or a year</li>
+              <li>36-species plant catalogue driving watering targets and seasonal feeding schedules</li>
+              <li>Remote use over Tailscale with QR-code device pairing, revocable per-device sessions, and a
+                DNS-rebinding guard</li>
+              <li>Hash-locked dependencies audited by pip-audit, osv-scanner, and gitleaks inside a suite of 982 Python
+                and 262 JavaScript tests</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <div class="subsection-header">
+        <h3 class="subsection-heading">Other Projects</h3>
       </div>
 
       <article class="project-card" id="project_1">

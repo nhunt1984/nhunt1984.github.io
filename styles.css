@@ -156,6 +156,20 @@ body {
   color: var(--muted);
 }
 
+a.dropdown-heading {
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a.dropdown-heading:hover {
+  color: var(--accent);
+}
+
+a.dropdown-heading:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .dropdown-heading + .dropdown-link {
   margin-top: 0;
 }
@@ -166,13 +180,23 @@ body {
   padding-top: 0.5rem;
 }
 
+.subsection-header {
+  margin-top: 1rem;
+}
+
 .subsection-heading {
+  font-family: "JetBrains Mono", monospace;
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-bottom: 0.75rem;
+}
+
+.subsection-header .lead {
+  color: var(--muted);
+  max-width: 65ch;
 }
 
 .nav-icon {
