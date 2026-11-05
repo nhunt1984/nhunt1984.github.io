@@ -4,8 +4,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-
+  <meta name="description" content="One-page resume for Nathan Hunt, covering education, experience, projects, and skills, with a PDF download." />
+  <meta name="theme-color" content="#121815" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nathan Hunt" />
+  <meta property="og:title" content="Resume | Nathan Hunt" />
+  <meta property="og:description" content="One-page resume for Nathan Hunt, covering education, experience, projects, and skills, with a PDF download." />
+  <meta property="og:url" content="https://nhunt1984.github.io/resume.html" />
+  <meta property="og:image" content="https://nhunt1984.github.io/images/share-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Nathan Hunt, with a render of his SAMD21RT dev board" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://nhunt1984.github.io/resume.html" />
+  <link rel="icon" href="images/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="images/icons/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png" />
 
   <title>Resume | Nathan Hunt</title>
 
@@ -16,21 +30,23 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-inner">
-      <div class="brand-mark">Nathan Hunt</div>
+      <a href="index.html" class="brand-mark">Nathan Hunt</a>
       <nav class="site-nav" aria-label="Main navigation">
         <div class="nav-item has-dropdown">
           <a href="index.html" class="nav-link">Experience</a>
-          <div class="dropdown" role="menu" aria-label="Experience shortcuts">
+          <div class="dropdown" role="group" aria-label="Experience shortcuts">
             <a href="index.html#cubesat" class="dropdown-heading">UMass CubeSat</a>
+            <a href="index.html#cubesat_work_mcu" class="dropdown-link">SAMD21RT Dev Board</a>
             <a href="index.html#cubesat_work_pcu" class="dropdown-link">Power Control Unit</a>
-            <a href="index.html#cubesat_work_pdu" class="dropdown-link">Power Delivery Unit</a>
+            <a href="index.html#cubesat_work_pdu" class="dropdown-link">Power Distribution Unit</a>
             <a href="index.html#cubesat_work_2" class="dropdown-link">Radiation Paper</a>
             <a href="index.html#projects" class="dropdown-heading">Projects</a>
             <a href="index.html#plantbuddy" class="dropdown-link">Plant-Buddy</a>
-            <a href="index.html#project_1" class="dropdown-link">BNO055 Drivers</a>
-            <a href="index.html#project_2" class="dropdown-link">Terminal-Based Text Editor</a>
+            <a href="index.html#project_1" class="dropdown-link">BNO055 IMU Driver</a>
+            <a href="index.html#project_2" class="dropdown-link">Terminal Text Editor</a>
           </div>
         </div>
         <a href="about.html" class="nav-link">About</a>
@@ -51,21 +67,19 @@
     </div>
   </header>
 
-  <main class="container page-shell">
+  <main class="container page-shell page-shell-tight" id="main">
     <header class="section-header">
-      <p class="eyebrow">Resume</p>
-      <h1 class="page-title">My Experience At A Glance</h1>
-      <p class="page-intro">Download a PDF or peek at a preview to see coursework, internships, and
-        project highlights.</p>
+      <h1 class="page-title">Resume</h1>
+      <p class="page-intro">One page covering my education, experience, projects, and skills.</p>
     </header>
 
-    <div class="resume-embed">
-      <p><a class="btn-download" href="images/Resume/Resume.pdf" download>Download PDF →</a></p>
-      <div class="resume-preview">
-        <a href="images/Resume/Resume.png" target="_blank" rel="noopener">
-          <img src="images/Resume/Resume.png" alt="My resume" />
-        </a>
-      </div>
+    <p><a class="btn" href="images/Resume/Resume.pdf" download="Nathan-Hunt-Resume.pdf">Download PDF</a></p>
+
+    <div class="resume-preview">
+      <a href="images/Resume/Resume.png" target="_blank" rel="noopener noreferrer">
+        <img src="images/Resume/Resume.png" width="1545" height="2000"
+          alt="Preview of Nathan Hunt's one-page resume. The PDF download has the same content." />
+      </a>
     </div>
   </main>
 
@@ -73,6 +87,7 @@
     <div class="container footer-inner">
       <span class="footer-copy">© 2026 Nathan Hunt</span>
       <div class="footer-links">
+        <a href="mailto:nathanhunt94709@gmail.com">Email</a>
         <a href="https://github.com/nhunt1984" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="https://www.linkedin.com/in/nathan-hunt-a6624a30b/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>

@@ -7,20 +7,22 @@
 }
 
 :root {
-  --bg: #0a0a0a;
-  --surface: #141414;
-  --border: #1e1e1e;
-  --text: #e5e5e5;
-  --muted: #737373;
+  --bg: #0b0f0d;
+  --surface: #121815;
+  --border: #222c27;
+  --text: #e6ebe8;
+  --muted: #9ca7a1;
   --accent: #f59e0b;
   color-scheme: dark;
 }
 
-html, body {
-  height: 100%;
+html {
+  scroll-padding-top: 5.5rem;
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   font-family: "DM Sans", sans-serif;
   background: var(--bg);
@@ -33,16 +35,38 @@ body {
 
 .container {
   width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+  max-width: 1008px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
 }
 
 .page-shell {
   display: flex;
   flex-direction: column;
+  flex: 1;
   gap: 4rem;
-  padding: 3rem 0;
+  padding-block: 3rem;
+}
+
+.page-shell-tight {
+  gap: 1.5rem;
+}
+
+.skip-link {
+  position: absolute;
+  top: -4rem;
+  left: 1rem;
+  z-index: 300;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0.75rem;
 }
 
 /* ===== Header & Navigation ===== */
@@ -61,7 +85,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.75rem 0;
+  padding-block: 0.75rem;
 }
 
 .brand-mark {
@@ -69,6 +93,11 @@ body {
   font-weight: 700;
   color: var(--accent);
   text-decoration: none;
+}
+
+.brand-mark:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .site-nav {
@@ -83,7 +112,7 @@ body {
   text-decoration: none;
   color: var(--text);
   border-bottom: 2px solid transparent;
-  transition: color 0.3s ease, border-color 0.3s ease;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .nav-link:hover {
@@ -121,6 +150,16 @@ body {
   z-index: 50;
 }
 
+/* Keeps the menu open while the mouse crosses the gap above it */
+.dropdown::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 0;
+  right: 0;
+  height: 6px;
+}
+
 .has-dropdown:hover .dropdown,
 .has-dropdown:focus-within .dropdown {
   opacity: 1;
@@ -134,7 +173,7 @@ body {
   color: var(--text);
   text-decoration: none;
   white-space: nowrap;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
 }
 
 .dropdown-link:hover {
@@ -149,16 +188,14 @@ body {
 .dropdown-heading {
   display: block;
   padding: 0.4rem 0.75rem 0.15rem;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
   color: var(--muted);
 }
 
 a.dropdown-heading {
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
 }
 
 a.dropdown-heading:hover {
@@ -180,25 +217,6 @@ a.dropdown-heading:focus-visible {
   padding-top: 0.5rem;
 }
 
-.subsection-header {
-  margin-top: 1rem;
-}
-
-.subsection-heading {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 0.75rem;
-}
-
-.subsection-header .lead {
-  color: var(--muted);
-  max-width: 65ch;
-}
-
 .nav-icon {
   display: inline-flex;
   align-items: center;
@@ -208,7 +226,7 @@ a.dropdown-heading:focus-visible {
   margin-left: 0.5rem;
   color: var(--text);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
 }
 
 .nav-icon:hover {
@@ -229,48 +247,59 @@ a.dropdown-heading:focus-visible {
 /* ===== Hero ===== */
 
 .hero {
-  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
 .hero-name {
   font-family: "JetBrains Mono", monospace;
-  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-size: clamp(2.5rem, 6vw, 3.75rem);
   font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.hero-subtitle {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.9rem;
-  color: var(--muted);
-  letter-spacing: 0.05em;
-  margin-bottom: 1rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .hero-lead {
-  color: var(--muted);
-  max-width: 60ch;
-  margin-bottom: 1.5rem;
+  max-width: 58ch;
+  font-size: 1.2rem;
+  line-height: 1.55;
 }
 
 .hero-links {
   display: flex;
-  gap: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
-.hero-links a {
-  color: var(--accent);
-  text-decoration: none;
+.hero-board {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 1rem;
+  border-radius: 6px;
+}
+
+/* ===== Buttons ===== */
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
   font-family: "JetBrains Mono", monospace;
   font-size: 0.95rem;
-  transition: color 0.3s ease;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-.hero-links a:hover {
-  text-decoration: underline;
+.btn:hover {
+  background: var(--accent);
+  color: var(--bg);
 }
 
-.hero-links a:focus-visible {
+.btn:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
@@ -278,15 +307,6 @@ a.dropdown-heading:focus-visible {
 /* ===== Section Headers ===== */
 
 .section-header {
-  margin-bottom: 2rem;
-}
-
-.eyebrow {
-  font-family: "JetBrains Mono", monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.8rem;
-  color: var(--muted);
   margin-bottom: 0.5rem;
 }
 
@@ -297,6 +317,22 @@ a.dropdown-heading:focus-visible {
 }
 
 .section-header .lead {
+  color: var(--muted);
+  max-width: 65ch;
+}
+
+.subsection-header {
+  margin-top: 1.5rem;
+}
+
+.subsection-heading {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.subsection-header .lead {
   color: var(--muted);
   max-width: 65ch;
 }
@@ -314,21 +350,20 @@ a.dropdown-heading:focus-visible {
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 1.5rem;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.2s ease;
 }
 
-.project-card:hover {
+.project-card:target {
   border-color: var(--accent);
 }
 
 .card-meta {
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
   margin-bottom: 1rem;
   font-family: "JetBrains Mono", monospace;
   font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
   color: var(--muted);
 }
 
@@ -339,15 +374,13 @@ a.dropdown-heading:focus-visible {
   align-items: start;
 }
 
-.project-card h3 {
+.project-card h3,
+.project-card h4 {
   font-family: "JetBrains Mono", monospace;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+  line-height: 1.35;
   margin-bottom: 0.5rem;
-  transition: color 0.3s ease;
-}
-
-.project-card:hover h3 {
-  color: var(--accent);
+  transition: color 0.2s ease;
 }
 
 .project-card p {
@@ -362,7 +395,8 @@ a.dropdown-heading:focus-visible {
 }
 
 .capability-list li {
-  padding: 0.2rem 0;
+  padding: 0.2rem 0 0.2rem 0.8em;
+  text-indent: -0.8em;
   color: var(--muted);
   font-size: 0.95rem;
 }
@@ -389,11 +423,44 @@ a.dropdown-heading:focus-visible {
   margin-top: 0.5rem;
 }
 
+/* ===== Project Card Link ===== */
+
+.project-card-link {
+  display: block;
+  border-radius: 8px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-card-link:hover .project-card {
+  border-color: var(--accent);
+}
+
+.project-card-link:hover h3 {
+  color: var(--accent);
+}
+
+.project-card-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.read-paper-cta {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+.project-card-link:hover .read-paper-cta {
+  text-decoration: underline;
+}
+
 /* ===== About Page ===== */
 
 .about-header {
   text-align: center;
-  margin-bottom: 2rem;
 }
 
 .about-photo {
@@ -429,44 +496,22 @@ a.dropdown-heading:focus-visible {
   margin-bottom: 0;
 }
 
-/* ===== Resume Page ===== */
+.about-text a {
+  color: var(--accent);
+}
+
+/* ===== Resume & Paper Pages ===== */
 
 .page-title {
   font-family: "JetBrains Mono", monospace;
-  font-size: clamp(2rem, 3vw, 2.5rem);
-  margin-bottom: 0.25rem;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
 }
 
 .page-intro {
   color: var(--muted);
-  margin-bottom: 1.5rem;
-}
-
-.resume-embed {
-  text-align: center;
-}
-
-.btn-download {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.95rem;
-  color: var(--accent);
-  border: 1px solid var(--accent);
-  border-radius: 4px;
-  text-decoration: none;
-  transition: color 0.3s ease, border-color 0.3s ease;
-  margin-bottom: 1.5rem;
-}
-
-.btn-download:hover {
-  color: var(--text);
-  border-color: var(--text);
-}
-
-.btn-download:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  max-width: 65ch;
 }
 
 .resume-preview {
@@ -483,16 +528,6 @@ a.dropdown-heading:focus-visible {
   border-radius: 4px;
 }
 
-/* ===== Project Card Link ===== */
-
-.project-card-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-/* ===== PDF Viewer ===== */
-
 .pdf-viewer {
   width: 100%;
   height: 85vh;
@@ -507,13 +542,16 @@ a.dropdown-heading:focus-visible {
   display: block;
 }
 
+.pdf-viewer a {
+  color: var(--accent);
+}
+
 /* ===== Footer ===== */
 
 .site-footer {
   background: var(--surface);
   border-top: 1px solid var(--border);
-  padding: 1.5rem 0;
-  margin-top: 4rem;
+  padding-block: 1.5rem;
 }
 
 .footer-inner {
@@ -536,7 +574,7 @@ a.dropdown-heading:focus-visible {
   color: var(--muted);
   text-decoration: none;
   font-size: 0.85rem;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
@@ -548,23 +586,20 @@ a.dropdown-heading:focus-visible {
   outline-offset: 2px;
 }
 
-.read-paper-cta {
-  display: inline-block;
-  margin-top: 1rem;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.9rem;
-  color: var(--accent);
-  transition: color 0.3s ease;
-}
-
-.project-card-link:hover .read-paper-cta {
-  text-decoration: underline;
-}
-
 /* ===== Lightbox ===== */
 
 .expandable {
-  cursor: pointer;
+  cursor: zoom-in;
+  transition: opacity 0.2s ease;
+}
+
+.expandable:hover {
+  opacity: 0.85;
+}
+
+.expandable:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .lightbox {
@@ -577,13 +612,15 @@ a.dropdown-heading:focus-visible {
   background: rgba(0, 0, 0, 0.85);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  cursor: pointer;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  cursor: zoom-out;
 }
 
+/* Visible straight away when opening, so the close button can take focus */
 .lightbox[aria-hidden="false"] {
   opacity: 1;
   visibility: visible;
+  transition: opacity 0.2s ease;
 }
 
 .lightbox img {
@@ -594,31 +631,112 @@ a.dropdown-heading:focus-visible {
   cursor: default;
 }
 
+.lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.lightbox-close:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.lightbox-close:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ===== Motion ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+  }
+}
+
 /* ===== Responsive ===== */
 
+/* Touch screens can't hover, and tapping a menu link navigates straight away */
+@media (hover: none) {
+  .dropdown {
+    display: none;
+  }
+}
+
 @media (max-width: 640px) {
+  html {
+    scroll-padding-top: 1rem;
+  }
+
   .container {
-    padding: 0 1rem;
+    padding-inline: 1rem;
+  }
+
+  .page-shell {
+    gap: 2.5rem;
+    padding-block: 2rem;
+  }
+
+  .page-shell-tight {
+    gap: 1.25rem;
+  }
+
+  /* A sticky header would take too much of a phone screen */
+  .site-header {
+    position: static;
   }
 
   .header-inner {
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 0.25rem;
+    padding-block: 0.6rem 0.25rem;
   }
 
   .site-nav {
     width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.25rem;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .nav-link {
+    padding: 0.4rem 0.35rem;
   }
 
   .nav-icon {
+    width: 36px;
+    height: 36px;
     margin-left: 0;
+  }
+
+  .hero-lead {
+    font-size: 1.1rem;
+  }
+
+  .project-card {
+    padding: 1.25rem;
   }
 
   .project-body {
     grid-template-columns: 1fr;
+  }
+
+  .page-card {
+    padding: 1.25rem;
+  }
+
+  .resume-preview {
+    padding: 0.5rem;
   }
 
   .footer-inner {

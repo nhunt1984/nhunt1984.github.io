@@ -4,9 +4,24 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Nathan Hunt is a computer engineering student at UMass Amherst working on embedded systems, low-level software, and hardware integration, including power and control electronics for the UMass CubeSat team." />
+  <meta name="theme-color" content="#121815" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nathan Hunt" />
+  <meta property="og:title" content="Nathan Hunt | Embedded Systems and Hardware" />
+  <meta property="og:description" content="Nathan Hunt is a computer engineering student at UMass Amherst working on embedded systems, low-level software, and hardware integration, including power and control electronics for the UMass CubeSat team." />
+  <meta property="og:url" content="https://nhunt1984.github.io/" />
+  <meta property="og:image" content="https://nhunt1984.github.io/images/share-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Nathan Hunt, with a render of his SAMD21RT dev board" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://nhunt1984.github.io/" />
+  <link rel="icon" href="images/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="images/icons/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png" />
 
-
-  <title>Projects | Nathan Hunt</title>
+  <title>Nathan Hunt | Embedded Systems and Hardware</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,21 +32,23 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-inner">
-      <div class="brand-mark">Nathan Hunt</div>
+      <a href="index.html" class="brand-mark">Nathan Hunt</a>
       <nav class="site-nav" aria-label="Main navigation">
         <div class="nav-item has-dropdown">
           <a href="index.html" class="nav-link">Experience</a>
-          <div class="dropdown" role="menu" aria-label="Experience shortcuts">
+          <div class="dropdown" role="group" aria-label="Experience shortcuts">
             <a href="index.html#cubesat" class="dropdown-heading">UMass CubeSat</a>
+            <a href="index.html#cubesat_work_mcu" class="dropdown-link">SAMD21RT Dev Board</a>
             <a href="index.html#cubesat_work_pcu" class="dropdown-link">Power Control Unit</a>
-            <a href="index.html#cubesat_work_pdu" class="dropdown-link">Power Delivery Unit</a>
+            <a href="index.html#cubesat_work_pdu" class="dropdown-link">Power Distribution Unit</a>
             <a href="index.html#cubesat_work_2" class="dropdown-link">Radiation Paper</a>
             <a href="index.html#projects" class="dropdown-heading">Projects</a>
             <a href="index.html#plantbuddy" class="dropdown-link">Plant-Buddy</a>
-            <a href="index.html#project_1" class="dropdown-link">BNO055 Drivers</a>
-            <a href="index.html#project_2" class="dropdown-link">Terminal-Based Text Editor</a>
+            <a href="index.html#project_1" class="dropdown-link">BNO055 IMU Driver</a>
+            <a href="index.html#project_2" class="dropdown-link">Terminal Text Editor</a>
           </div>
         </div>
         <a href="about.html" class="nav-link">About</a>
@@ -54,18 +71,59 @@
     </div>
   </header>
 
-  <main class="container page-shell">
+  <main class="container page-shell" id="main">
     <section class="hero">
       <h1 class="hero-name">Nathan Hunt</h1>
-      <p class="hero-subtitle">Embedded Systems · Low-Level Software · Hardware Integration</p>
-
+      <p class="hero-lead">Computer engineering student at UMass Amherst working on embedded systems, low-level software,
+        and hardware integration. I'm looking for full-time roles after I graduate in May 2027.</p>
+      <div class="hero-links">
+        <a class="btn" href="resume.html">View resume</a>
+        <a class="btn" href="mailto:nathanhunt94709@gmail.com">Email me</a>
+      </div>
+      <img class="hero-board" src="images/CubeSat_Images/SAMD21RT_DevBoard_Top.jpg" width="1840" height="527"
+        alt="Top-down render of the SAMD21RT dev board laid on its side, with the USB-C port on the left, the microcontroller in the middle, and a row of header pins along each long edge"
+        decoding="async" />
     </section>
 
     <section class="projects" id="cubesat" aria-label="UMass CubeSat work">
       <div class="section-header">
         <h2>UMass CubeSat</h2>
-        <p class="lead">Designing and building power electronics for a student-led CubeSat mission.</p>
+        <p class="lead">Designing and building power and control electronics for a student-led CubeSat mission.</p>
       </div>
+
+      <article class="project-card" id="cubesat_work_mcu">
+        <div class="card-meta">
+          <span>PCB Design</span>
+          <span>KiCad / SAMD21</span>
+        </div>
+        <div class="project-body">
+          <figure class="project-media">
+            <img class="expandable" src="images/CubeSat_Images/SAMD21RT_DevBoard_Render.jpg" width="1100" height="1081"
+              alt="3D render of the SAMD21RT dev board, a narrow PCB with a USB-C port at one end, a 64-pin microcontroller at the center, and a row of header pins down each long edge"
+              loading="lazy" decoding="async" />
+            <figcaption>SAMD21RT dev board, rendered from the KiCad design.</figcaption>
+          </figure>
+          <div>
+            <h3>SAMD21RT Dev Board</h3>
+            <p>Designed a 4-layer, 23 × 80 mm development board in KiCad as practice in compact PCB design and so the
+              team's programmer could start writing firmware before the Main Computer is built. The Main Computer will
+              use the radiation-tolerant SAMD21RT to control the PDU rails, monitor for radiation faults, handle
+              redundancy such as shutting off gates or power cycling, manage system backup, and reflash other
+              subsystems. This board runs the ATSAMD21J17D, a same-pinout commercial stand-in, and fits a standard
+              breadboard. USB-C feeds a 3.3 V LDO, a TPS2117 mux selects between USB and an external 3.3 V supply, and
+              a 32.768 kHz crystal gives the RTC a more accurate clock than the internal oscillator. The first boards
+              are being fabricated.</p>
+            <ul class="capability-list" aria-label="Key capabilities">
+              <li>45 of 52 GPIO on 0.1 in headers, including 20 ADC channels, six I²C buses, and SWD</li>
+              <li>USB-C connector protected by TVS and ESD clamps</li>
+              <li>External 3.3 V input damped against hot-plug ringing, simulated at no more than 5.69 V against a 6 V
+                limit</li>
+              <li>Every resistor, capacitor, and inductor sized in a written design doc citing datasheet section and
+                page</li>
+            </ul>
+          </div>
+        </div>
+      </article>
 
       <article class="project-card" id="cubesat_work_pcu">
         <div class="card-meta">
@@ -74,20 +132,19 @@
         </div>
         <div class="project-body">
           <figure class="project-media">
-            <img class="expandable" src="images/CubeSat_Images/AtMegaDevBoard.png"
+            <img class="expandable" src="images/CubeSat_Images/AtMegaDevBoard.jpg" width="718" height="665"
               alt="ATmega128A development board for the Power Control Unit" loading="lazy" decoding="async" />
             <figcaption>PCU development board prototype.</figcaption>
           </figure>
           <div>
             <h3>Power Control Unit Dev Board</h3>
-            <p>Developed and wrote custom drivers for the Power Control Unit development board. Based on the
-              ATmega128A, this will be used to test power
-              systems prior to the creation of the unified BMS/PDU system. For the real flight, we will use the ATmegaS128,
-              which is a drop-in rad-hard alternative.</p>
+            <p>Co-designed the Power Control Unit development board and co-wrote its custom drivers. It was the first
+              version of the Main Computer: based on the ATmega128A, it was designed to control the PDU, monitoring for
+              faults and reacting to them. Adding system backup and reflashing of corrupt images later led to a Main Computer
+              redesign around the more capable SAMD21RT.</p>
             <ul class="capability-list" aria-label="Key capabilities">
               <li>Custom firmware drivers for power management and telemetry</li>
-              <li>Drop-in migration path to rad-hard 128S for flight hardware</li>
-              <li>Prototype validation platform for unified BMS/PDU development</li>
+              <li>Prototype validation platform for unified BMU/PDU development</li>
             </ul>
           </div>
         </div>
@@ -100,15 +157,15 @@
         </div>
         <div class="project-body">
           <figure class="project-media">
-            <img class="expandable" src="images/CubeSat_Images/PDU-TestBoard.png"
-              alt="Power Delivery Unit test board with load switching circuitry" loading="lazy" decoding="async" />
+            <img class="expandable" src="images/CubeSat_Images/PDU-TestBoard.jpg" width="883" height="777"
+              alt="Power Distribution Unit test board with load switching circuitry" loading="lazy" decoding="async" />
             <figcaption>PDU test board for load switching validation.</figcaption>
           </figure>
           <div>
-            <h3>Power Delivery Unit</h3>
-            <p>Designed the Power Delivery Unit that routes regulated power from the BMS to each satellite
+            <h3>Power Distribution Unit</h3>
+            <p>Co-designed the Power Distribution Unit that routes regulated power from the BMU to each satellite
               subsystem. The PDU provides individually switched and current-limited output channels, allowing
-              the flight computer to enable or disable subsystems on demand and isolate faults before they
+              the Main Computer to enable or disable subsystems on demand and isolate faults before they
               propagate to the main bus. The board provides 3.3 V, 5 V, and 12 V rails.</p>
             <ul class="capability-list" aria-label="Key capabilities">
               <li>Independent load switches with overcurrent protection per channel</li>
@@ -127,21 +184,20 @@
           </div>
           <div class="project-body">
             <figure class="project-media">
-              <img src="images/CubeSat_Images/Radiation Assurance For CubeSat Power System_Presentation.png"
+              <img src="images/CubeSat_Images/Radiation Assurance For CubeSat Power System_Presentation.jpg" width="1200" height="800"
                 alt="Radiation assurance research paper presentation poster" loading="lazy" decoding="async" />
-              <figcaption>Click to read the full paper.</figcaption>
+              <figcaption>Presentation poster for the paper.</figcaption>
             </figure>
             <div>
               <h3>Radiation Assurance For CubeSat Power System</h3>
-              <p>Authored a research paper analyzing the radiation environment for a 3–5 year solar synchronous orbit
-                and its effects on the battery management system and power distribution unit. Evaluated TID, SEE, and
+              <p>Authored a research paper analyzing the radiation environment for a 3–5 year sun-synchronous orbit
+                and its effects on the battery management unit and power distribution unit. Evaluated TID, SEE, and
                 DDD threats, then prescribed component-grade and circuit-level mitigation strategies.</p>
               <ul class="capability-list" aria-label="Key capabilities">
-
                 <li>Assessed shielding effectiveness and SEE mitigation strategies</li>
                 <li>Recommended rad-tolerant parts with analog-preferred design policy</li>
               </ul>
-              <span class="read-paper-cta">Read the full paper &rarr;</span>
+              <span class="read-paper-cta">Read the full paper</span>
             </div>
           </div>
         </article>
@@ -167,13 +223,13 @@
         </div>
         <div class="project-body">
           <figure class="project-media">
-            <img class="expandable" src="images/PlantBuddy_Images/BumbleBee_Board_Render.png"
+            <img class="expandable" src="images/PlantBuddy_Images/BumbleBee_Board_Render.jpg" width="648" height="835"
               alt="3D render of the BumbleBee V1 sensor probe board, a stake-shaped PCB with an ESP32-C3 module at the head"
               loading="lazy" decoding="async" />
             <figcaption>BumbleBee V1 probe, rendered from the KiCad design.</figcaption>
           </figure>
           <div>
-            <h3>BumbleBee Sensor Probe</h3>
+            <h4>BumbleBee Sensor Probe</h4>
             <p>Designed a 4-layer, 30 × 110 mm ESP32-C3 sensor probe in KiCad with 48 SMD parts: FDC1004 capacitive
               moisture sensing, SHT40 temperature and humidity, VEML7700 light, an NTC for soil temperature, EC
               electrodes, and a BQ25302 LiPo charger. DRC, ERC, and schematic-parity clean, with the BOM sourced for
@@ -195,13 +251,13 @@
         </div>
         <div class="project-body">
           <figure class="project-media">
-            <img class="expandable" src="images/PlantBuddy_Images/BumbleBee_Sensor_Head.png"
+            <img class="expandable" src="images/PlantBuddy_Images/BumbleBee_Sensor_Head.jpg" width="1100" height="868"
               alt="Close-up render of the probe sensor head showing the ESP32-C3 module, USB-C port, and I2C sensors"
               loading="lazy" decoding="async" />
             <figcaption>The sensor head: ESP32-C3 module, USB-C charging, and the I²C sensor cluster.</figcaption>
           </figure>
           <div>
-            <h3>Probe Firmware</h3>
+            <h4>Probe Firmware</h4>
             <p>Wrote the ESP-IDF C firmware that runs the probe: I²C sensor drivers, a packed NimBLE advertisement
               payload, and a deep-sleep duty cycle measured at ~5.4 µA against an 11.6 µA budget. The probe wakes on a
               timer, powers its sensor rail, reads, broadcasts, and sleeps. It does no interpretation of its own; all
@@ -222,13 +278,13 @@
         </div>
         <div class="project-body">
           <figure class="project-media">
-            <img class="expandable" src="images/PlantBuddy_Images/Hive_Dashboard.jpg"
+            <img class="expandable" src="images/PlantBuddy_Images/Hive_Dashboard.jpg" width="1400" height="1316"
               alt="Hive dashboard showing three plant cards with moisture, air temperature, humidity, and battery readings"
               loading="lazy" decoding="async" />
             <figcaption>The Hive dashboard, running against simulated probes.</figcaption>
           </figure>
           <div>
-            <h3>Hive Hub &amp; Dashboard</h3>
+            <h4>Hive Hub &amp; Dashboard</h4>
             <p>Built the Hive hub in Python on a Raspberry Pi CM5: a BLE collector into SQLite, a calibration
               pipeline (VPD, lux to PPFD to DLI, NTC Beta), a FastAPI API, and a PWA dashboard with Web Push watering
               and feeding alerts. Deployed as systemd services with a self-verifying update and rollback script, and
@@ -256,12 +312,12 @@
         </div>
         <div class="project-body">
           <figure class="project-media">
-            <img src="images/Project_images/BNO055_Project_Cover.png"
+            <img class="expandable" src="images/Project_images/BNO055_Project_Cover.jpg" width="1045" height="791"
               alt="Breadboard and BNO055 wired to a microcontroller" loading="lazy" decoding="async" />
             <figcaption>Weekend driver build.</figcaption>
           </figure>
           <div>
-            <h3>Wrote drivers for the BNO055</h3>
+            <h4>BNO055 IMU Driver</h4>
             <p>Designed a complete BNO055 driver that configures I²C, unit selection, operation modes, axis remap/sign,
               and quaternion/Euler/vector reads. Packaged with CMake for the Pico SDK and tuned USB stdio logging to
               keep iteration fast.</p>
@@ -281,12 +337,13 @@
         </div>
         <div class="project-body">
           <figure class="project-media">
-            <img src="images/Project_images/Text_editor_P_cover.png" alt="Terminal window showcasing the C text editor"
+            <img class="expandable" src="images/Project_images/Text_editor_P_cover.png" width="709" height="428"
+              alt="Terminal window showcasing the C text editor"
               loading="lazy" decoding="async" />
             <figcaption>Clean command-line writing experience.</figcaption>
           </figure>
           <div>
-            <h3>Terminal-based text editor</h3>
+            <h4>Terminal Text Editor</h4>
             <p>A minimalist text editor that reads raw keystrokes, maintains a live on-screen buffer, and uses a
               linked-list core for near-instant cursor inserts and deletes. Built with robust boundary checks and a
               clean, extensible header/API. Microbenchmarked at ~0.05 µs per insert and ~0.02 µs per backspace
@@ -306,16 +363,13 @@
     <div class="container footer-inner">
       <span class="footer-copy">© 2026 Nathan Hunt</span>
       <div class="footer-links">
+        <a href="mailto:nathanhunt94709@gmail.com">Email</a>
         <a href="https://github.com/nhunt1984" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="https://www.linkedin.com/in/nathan-hunt-a6624a30b/" target="_blank"
           rel="noopener noreferrer">LinkedIn</a>
       </div>
     </div>
   </footer>
-
-  <div id="lightbox" class="lightbox" aria-hidden="true">
-    <img id="lightbox-img" src="" alt="" />
-  </div>
 
   <script src="nav.js"></script>
 </body>
